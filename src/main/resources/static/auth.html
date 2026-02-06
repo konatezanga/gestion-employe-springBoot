@@ -1,0 +1,101 @@
+<!-- auth.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification - Gestion des Employés</title>
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        .error-message {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+            border-left: 4px solid #dc3545;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .test-credentials {
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #0066cc;
+            font-size: 0.85em;
+        }
+
+        .test-credentials p {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .test-credentials strong {
+            color: #0066cc;
+        }
+
+        .test-credentials code {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-wrapper">
+        <div class="background-shape"></div>
+        <div class="secondary-shape"></div>
+
+        <!-- Panel Connexion -->
+        <div class="credentials-panel signin">
+            <h2 class="slide-element">Se connecter</h2>
+            
+            <!-- Message d'erreur -->
+            <div class="error-message slide-element" id="errorMsg"></div>
+            
+            <form method="POST" action="/login" id="loginForm">
+                
+                <div class="field-wrapper slide-element">
+                    <input type="text" name="username" id="username" required autofocus>
+                    <label for="username">Nom d'utilisateur</label>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">Mot de passe</label>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <div class="field-wrapper slide-element">
+                    <button class="submit-button" type="submit">Se connecter</button>
+                </div>
+
+                <!-- Info utilisateurs de test
+                <div class="test-credentials slide-element">
+                    <p><strong>Identifiants de test :</strong></p>
+                    <p>Admin: <code>admin</code> / <code>admin123</code></p>
+                    <p>Employé: <code>employee</code> / <code>employee123</code></p>
+                </div> -->
+            </form>
+        </div>
+
+        <div class="welcome-section signin">
+            <h2 class="slide-element">BIENVENUE!</h2>
+            <p class="slide-element" style="margin-top: 20px; font-size: 1em; opacity: 0.9;">
+                Gestion des Employés - Application Sécurisée
+            </p>
+        </div>
+    </div>
+</body>
+</html>

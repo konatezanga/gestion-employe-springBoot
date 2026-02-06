@@ -1,0 +1,82 @@
+<!-- employeses.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Employés</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="employes.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-users"></i> Gestion des Employés</h1>
+            <a href="auth.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        </header>
+
+        <main>
+            <!-- Section Formulaire -->
+            <section class="form-section">
+                <div class="form-container">
+                    <h2>Ajouter/Modifier un Employé</h2>
+                    <form id="employeForm">
+                        <div class="form-group">
+                            <label for="matricule">Matricule (ID):</label>
+                            <input type="number" id="matricule" readonly placeholder="Auto-généré">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nom">Nom:</label>
+                            <input type="text" id="nom" placeholder="Entrez le nom de l'employé" required>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Section Liste des Employés -->
+            <section class="list-section">
+                <h2><i class="fas fa-list"></i> Liste des Employés</h2>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Rechercher un employé...">
+                    <button id="refreshBtn" class="btn btn-info">
+                        <i class="fas fa-sync-alt"></i> Actualiser
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table id="employesTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Matricule</th>
+                                <th>Nom</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employesTableBody">
+                            <!-- Les employés seront affichés ici -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="noData" class="no-data">
+                    <p><i class="fas fa-inbox"></i> Aucun employé trouvé</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="employes.js"></script>
+</body>
+</html>

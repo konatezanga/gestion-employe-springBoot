@@ -1,0 +1,387 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1a1a2e;
+    padding: 20px;
+}
+
+.auth-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 25px #00d4ff;
+    overflow: hidden;
+    display: flex;
+}
+
+.credentials-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.credentials-panel h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.field-wrapper {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 25px;
+}
+
+.field-wrapper input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #fff;
+    padding-right: 23px;
+    transition: .5s;
+}
+
+.field-wrapper input:focus,
+.field-wrapper input:valid {
+    border-bottom: 2px solid #00d4ff;
+}
+
+.field-wrapper label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    transition: .5s;
+    pointer-events: none;
+}
+
+.field-wrapper input:focus ~ label,
+.field-wrapper input:valid ~ label {
+    top: -5px;
+    color: #00d4ff;
+}
+
+.field-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 18px;
+    transform: translateY(-50%);
+    color: #fff;
+    transition: .5s;
+}
+
+.field-wrapper input:focus ~ i,
+.field-wrapper input:valid ~ i {
+    color: #00d4ff;
+}
+
+.submit-button {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #00d4ff;
+    color: #fff;
+    transition: .5s;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background: #00d4ff;
+    color: #1a1a2e;
+}
+
+
+.welcome-section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0 40px;
+}
+
+.welcome-section h2 {
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.welcome-section p {
+    font-size: 16px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .auth-wrapper {
+        flex-direction: column;
+        height: auto;
+        min-height: 500px;
+    }
+
+    .credentials-panel,
+    .welcome-section {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .welcome-section {
+        display: none;
+    }
+
+    .credentials-panel {
+        padding: 40px 30px;
+    }
+
+    .credentials-panel h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .credentials-panel {
+        padding: 30px 20px;
+    }
+
+    .credentials-panel h2 {
+        font-size: 24px;
+    }
+
+    .field-wrapper input,
+    .field-wrapper label {
+        font-size: 14px;
+    }
+
+    .submit-button {
+        font-size: 14px;
+        height: 40px;
+    }
+
+    .switch-link {
+        font-size: 13px;
+    }
+}
+
+    .field-wrapper input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: #fff;
+        font-weight: 600;
+        border-bottom: 2px solid #fff;
+        padding-right: 23px;
+        transition: .5s;
+    }
+
+    .field-wrapper input:focus,
+    .field-wrapper input:valid {
+        border-bottom: 2px solid #00d4ff;
+    }
+
+    .field-wrapper label {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #fff;
+        transition: .5s;
+    }
+
+    .field-wrapper input:focus~label,
+    .field-wrapper input:valid~label {
+        top: -5px;
+        color: #00d4ff;
+    }
+
+    .field-wrapper i {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        font-size: 18px;
+        transform: translateY(-50%);
+        color: #fff;
+    }
+
+    .field-wrapper input:focus~i,
+    .field-wrapper input:valid~i {
+        color: #00d4ff;
+    }
+
+    .submit-button {
+        position: relative;
+        width: 100%;
+        height: 45px;
+        background: transparent;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        border: 2px solid #00d4ff;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .submit-button::before {
+        content: "";
+        position: absolute;
+        height: 300%;
+        width: 100%;
+        background: linear-gradient(#1a1a2e, #00d4ff, #1a1a2e, #00d4ff);
+        top: -100%;
+        left: 0;
+        z-index: -1;
+        transition: .5s;
+    }
+
+    .submit-button:hover:before {
+        top: 0;
+    }
+
+    .welcome-section {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .welcome-section.signin {
+        right: 0;
+        text-align: right;
+        padding: 0 40px 60px 150px;
+    }
+
+    .welcome-section h2 {
+        text-transform: uppercase;
+        font-size: 36px;
+        line-height: 1.3;
+    }
+
+    .welcome-section p {
+        font-size: 16px;
+    }
+
+    .auth-wrapper .background-shape {
+        position: absolute;
+        right: 0;
+        top: -5px;
+        height: 600px;
+        width: 850px;
+        background: linear-gradient(45deg, #1a1a2e, #00d4ff);
+        transform: rotate(10deg) skewY(40deg);
+        transform-origin: bottom right;
+        transition: 1.5s ease;
+        transition-delay: 1.6s;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .auth-wrapper {
+            height: auto;
+            min-height: 500px;
+            flex-direction: column;
+        }
+
+        .auth-wrapper .credentials-panel,
+        .welcome-section {
+            width: 100%;
+            position: relative;
+        }
+
+        
+
+        .welcome-section {
+            display: none;
+        }
+
+        .credentials-panel h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .auth-wrapper .background-shape {
+            display: none;
+        }
+
+        .field-wrapper {
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+
+        .credentials-panel.signin{
+            padding: 30px 20px;
+        }
+
+        .credentials-panel h2 {
+            font-size: 24px;
+        }
+
+        .field-wrapper input,
+        .field-wrapper label {
+            font-size: 14px;
+        }
+
+        .submit-button {
+            font-size: 14px;
+            height: 40px;
+        }
+
+        .switch-link {
+            font-size: 13px;
+        }
+    }
