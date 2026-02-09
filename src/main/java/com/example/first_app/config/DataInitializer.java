@@ -22,11 +22,8 @@ public class DataInitializer implements CommandLineRunner {
     @SuppressWarnings("null")
     public void run(String... args) throws Exception {
 
-        // Force la réinitialisation (supprime et recrée)
-        departementRepository.deleteAll();
-        entrepriseRepository.deleteAll();
-        // Si aucune entreprise n'existe, créer une entreprise unique et 3 départements
-        // if (entrepriseRepository.count() == 0) {
+        // Ne pas supprimer les données existantes : ne créer que si aucune entreprise
+        if (entrepriseRepository.count() == 0) {
             Entreprise e = new Entreprise("NSIA Banque", "Cocody Rue lycée mermoz");
             e = entrepriseRepository.save(e);
 
@@ -35,6 +32,6 @@ public class DataInitializer implements CommandLineRunner {
             Departement d3 = new Departement("Finance", e);
 
             departementRepository.saveAll(java.util.Arrays.asList(d1, d2, d3));
-        // }
+        }
     }
 }
