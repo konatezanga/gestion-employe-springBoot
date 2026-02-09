@@ -36,6 +36,36 @@ public class EmployeRestController {
     private static final Logger logger = LoggerFactory.getLogger(EmployeRestController.class);
 
     /**
+     * Classe interne pour les réponses d'erreur
+     */
+    public static class ErrorResponse {
+        public String message;
+
+        public ErrorResponse(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    /**
+     * Classe interne pour les réponses de succès
+     */
+    public static class SuccessResponse {
+        public String message;
+
+        public SuccessResponse(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    /**
      * Récupère les informations de l'utilisateur courant
      * GET /api/employes/current-user
      * Retourne le username et les rôles
@@ -148,36 +178,6 @@ public class EmployeRestController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(new ErrorResponse("Vous n'avez pas les permissions pour supprimer un employé"));
-        }
-    }
-
-    /**
-     * Classe interne pour les réponses d'erreur
-     */
-    public static class ErrorResponse {
-        public String message;
-
-        public ErrorResponse(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-    }
-
-    /**
-     * Classe interne pour les réponses de succès
-     */
-    public static class SuccessResponse {
-        public String message;
-
-        public SuccessResponse(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
         }
     }
 }
