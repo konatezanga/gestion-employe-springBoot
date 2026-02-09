@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Employés</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,7 +15,7 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-users"></i> Gestion des Employés</h1>
-            <a href="auth.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
         </header>
 
         <main>
@@ -33,6 +32,26 @@
                         <div class="form-group">
                             <label for="nom">Nom:</label>
                             <input type="text" id="nom" placeholder="Entrez le nom de l'employé" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom">Prénom:</label>
+                            <input type="text" id="prenom" placeholder="Entrez le prénom" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="poste">Poste:</label>
+                            <input type="text" id="poste" placeholder="Entrez le poste" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entrepriseSelect">Entreprise:</label>
+                            <select id="entrepriseSelect"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="departementSelect">Département:</label>
+                            <select id="departementSelect"></select>
                         </div>
 
                         <div class="form-actions">
@@ -60,7 +79,10 @@
                         <thead>
                             <tr>
                                 <th>Matricule</th>
-                                <th>Nom</th>
+                                <th>Nom & prénom</th>
+                                <th>Poste</th>
+                                <th>Entreprise</th>
+                                <th>Département</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

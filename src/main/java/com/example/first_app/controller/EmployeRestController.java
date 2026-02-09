@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -30,6 +32,8 @@ public class EmployeRestController {
 
     @Autowired
     private EmployeService employeService;
+    
+    private static final Logger logger = LoggerFactory.getLogger(EmployeRestController.class);
 
     /**
      * Récupère les informations de l'utilisateur courant
@@ -41,6 +45,7 @@ public class EmployeRestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         
         if (authentication == null || !authentication.isAuthenticated()) {
+            logger.info("Authentification non trouvée ou non authentifiée");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
@@ -53,8 +58,12 @@ public class EmployeRestController {
             .map(GrantedAuthority::getAuthority)
             .toList();
         
+        logger.info("Utilisateur: {}, Autorités brutes: {}", authentication.getName(), roles);
+        
         userInfo.put("roles", roles);
-        userInfo.put("isAdmin", roles.contains("ROLE_ADMIN"));
+        boolean isAdmin = roles.contains("ROLE_ADMIN");
+        logger.info("isAdmin calculé: {}", isAdmin);
+        userInfo.put("isAdmin", isAdmin);
         
         return ResponseEntity.ok(userInfo);
     }
@@ -88,13 +97,19 @@ public class EmployeRestController {
      */
     @PostMapping
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<?> createEmploye(@RequestBody Employe employe) {
+    public ResponseEntity<?> createEmploye(@RequestBody Map<String, Object> employe) {
         try {
-            Employe newEmploye = employeService.createEmploye(employe.getNom());
+            String nom = (String) employe.get("nom");
+            String prenom = (String) employe.get("prenom");
+            String poste = (String) employe.get("poste");
+            int entrepriseId = (Integer) employe.get("entrepriseId");
+            int departementId = (Integer) employe.get("departementId");
+
+            Employe newEmploye = employeService.createEmploye(nom, prenom, poste, entrepriseId, departementId);
             return ResponseEntity.status(HttpStatus.CREATED).body(newEmploye);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(new ErrorResponse("Vous n'avez pas les permissions pour créer un employé"));
+                .body(new ErrorResponse("Vous n'avez pas les permissions pour créer un employé: " + e.getMessage()));
         }
     }
 
@@ -105,13 +120,17 @@ public class EmployeRestController {
      */
     @PutMapping("/{matricule}")
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<?> updateEmploye(@PathVariable int matricule, @RequestBody Employe employe) {
+    public ResponseEntity<?> updateEmploye(@PathVariable int matricule, @RequestBody Map<String, Object> employe) {
         try {
-            Employe updatedEmploye = employeService.updateEmployeById(matricule, employe.getNom());
+            String nom = (String) employe.get("nom");
+            String prenom = (String) employe.get("prenom");
+            String poste = (String) employe.get("poste");
+
+            Employe updatedEmploye = employeService.updateEmployeById(matricule, nom, prenom, poste);
             return ResponseEntity.ok(updatedEmploye);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(new ErrorResponse("Vous n'avez pas les permissions pour modifier un employé"));
+                .body(new ErrorResponse("Vous n'avez pas les permissions pour modifier un employé: " + e.getMessage()));
         }
     }
 

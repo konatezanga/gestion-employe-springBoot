@@ -34,13 +34,13 @@ public class SecurityConfig {
         UserDetails admin = User.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("admin123"))
-                .roles("ADMIN", "EMPLOYEE") // L'admin a tous les rôles
+                .authorities("ROLE_ADMIN", "ROLE_EMPLOYEE")
                 .build();
         
         UserDetails employee = User.builder()
                 .username("employee")
                 .password(passwordEncoder.encode("employee123"))
-                .roles("EMPLOYEE")
+                .authorities("ROLE_EMPLOYEE")
                 .build();
         
         return new InMemoryUserDetailsManager(admin, employee);
@@ -54,12 +54,12 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorize -> authorize
                 // Les ressources statiques sont accessibles à tous
-                .requestMatchers("/", "/auth.html", "/style.css", "/auth.css", "/employes.css", 
+                .requestMatchers("/", "/auth.html", "/employes.html", "/auth.css", "/employes.css", 
                                "/employes.js", "/js/**", "/css/**", "/images/**", "/fonts/**").permitAll()
                 // H2 console pour le développement
                 .requestMatchers("/h2-console/**").permitAll()
-                // L'API pour les employés nécessite une authentification
-                .requestMatchers("/api/employes/**").authenticated()
+                // L'API pour les employés, entreprises et départements nécessite une authentification
+                .requestMatchers("/api/employes/**", "/api/entreprises/**", "/api/departements/**").authenticated()
                 // Toutes les autres requêtes
                 .anyRequest().authenticated()
             )

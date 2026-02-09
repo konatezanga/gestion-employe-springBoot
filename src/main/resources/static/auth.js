@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Ajouter un listener pour gérer les erreurs de soumission
+    // Ajout un listener pour gérer les erreurs de soumission
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
